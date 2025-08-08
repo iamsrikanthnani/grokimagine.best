@@ -20,16 +20,25 @@ export const getImagines = async (query: {
   mediaType?: "image" | "video";
   likes?: number;
   dislikes?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date; // exact
+  updatedAt?: Date; // exact
+  since?: Date; // createdAt >= since
+  until?: Date; // createdAt <= until
   limit?: number;
   skip?: number;
 }) => {
   await connectToDatabase();
-  const { limit = 10, skip = 0, ...rest } = query;
+  const { limit = 10, skip = 0, since, until, ...rest } = query;
+  const filter: Record<string, unknown> = { ...rest };
+  if (since || until) {
+    filter.createdAt = {
+      ...(since ? { $gte: since } : {}),
+      ...(until ? { $lte: until } : {}),
+    };
+  }
   const [imagines, total] = await Promise.all([
-    Imagine.find(rest).sort({ createdAt: -1 }).skip(skip).limit(limit),
-    Imagine.countDocuments(rest),
+    Imagine.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
+    Imagine.countDocuments(filter),
   ]);
   return { items: imagines, total };
 };

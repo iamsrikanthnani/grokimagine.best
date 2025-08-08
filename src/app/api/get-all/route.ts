@@ -10,6 +10,10 @@ export async function GET(req: NextRequest) {
     const prompt = searchParams.get("prompt") ?? undefined;
     const mediaType =
       (searchParams.get("mediaType") as "image" | "video" | null) ?? undefined;
+    const sinceStr = searchParams.get("since");
+    const untilStr = searchParams.get("until");
+    const since = sinceStr ? new Date(sinceStr) : undefined;
+    const until = untilStr ? new Date(untilStr) : undefined;
 
     const { items, total } = await getImagines({
       limit,
@@ -17,6 +21,8 @@ export async function GET(req: NextRequest) {
       xHandle,
       prompt,
       mediaType: mediaType ?? undefined,
+      since,
+      until,
     });
 
     return NextResponse.json(
