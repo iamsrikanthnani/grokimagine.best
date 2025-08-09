@@ -28,7 +28,10 @@ export function useCreateImagine() {
       return {};
     },
     onError: (err, _vars, ctx) => {
-      // no toast
+      // surface API message (e.g., cookie rate limit)
+      const msg = err?.message || "Failed to create";
+      // use a subtle toast
+      import("sonner").then(({ toast }) => toast.error(msg));
     },
     onSuccess: (data, _vars, ctx) => {
       qc.setQueryData(["imagine", data._id], data);

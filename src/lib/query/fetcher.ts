@@ -9,18 +9,20 @@ export type Json =
 async function parseError(res: Response): Promise<string> {
   try {
     const data = await res.json();
-    if (
-      data &&
-      typeof data === "object" &&
-      "error" in data &&
-      typeof (data as any).error === "string"
-    ) {
-      return (data as any).error as string;
+    if (data && typeof data === "object") {
+      if (typeof (data as any).error === "string")
+        return (data as any).error as string;
+      if (typeof (data as any).message === "string")
+        return (data as any).message as string;
     }
-    return res.statusText || "Request failed";
+    if (typeof data === "string" && data) return data;
   } catch {
-    return res.statusText || "Request failed";
+    try {
+      const text = await res.text();
+      if (text) return text;
+    } catch {}
   }
+  return res.statusText || "Request failed";
 }
 
 export async function apiGet<T>(url: string): Promise<T> {

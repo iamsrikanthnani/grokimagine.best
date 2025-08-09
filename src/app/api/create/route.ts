@@ -6,11 +6,21 @@ import {
   getImagines,
   uploadToR2,
 } from "@/lib";
+import { cookies } from "next/headers";
 
 const GLOBAL_COOLDOWN = process.env.IMAGINE_GLOBAL_COOLDOWN === "true";
 
 export async function POST(req: NextRequest) {
   try {
+    // cookie-based cooldown: block if present
+    const cookieStore = await cookies();
+    const cooldown = cookieStore.get?.("imagine_cooldown");
+    if (cooldown) {
+      return NextResponse.json(
+        { message: "Rate limit: only one submission per hour." },
+        { status: 429 }
+      );
+    }
     // multipart/form-data: xHandle, prompt, file
     const form = await req.formData();
     const xHandle = form.get("xHandle") as string | null;
@@ -100,7 +110,15 @@ export async function POST(req: NextRequest) {
       mediaUrl: url,
       mediaType,
     });
-    return NextResponse.json(imagine, { status: 201 });
+    const res = NextResponse.json(imagine, { status: 201 });
+    res.cookies.set("imagine_cooldown", xHandle, {
+      httpOnly: true,
+      maxAge: 60 * 60,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+    return res;
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to create imagine" },
