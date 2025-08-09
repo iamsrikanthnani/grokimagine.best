@@ -29,7 +29,12 @@ export const getImagines = async (query: {
 }) => {
   await connectToDatabase();
   const { limit = 10, skip = 0, since, until, ...rest } = query;
-  const filter: Record<string, unknown> = { ...rest };
+  const cleaned = Object.fromEntries(
+    Object.entries(rest).filter(
+      ([, v]) => v !== undefined && v !== null && v !== ""
+    )
+  );
+  const filter: Record<string, unknown> = { ...cleaned };
   if (since || until) {
     filter.createdAt = {
       ...(since ? { $gte: since } : {}),
