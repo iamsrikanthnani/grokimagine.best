@@ -4,6 +4,7 @@ import { useMutation, useQueryClient, QueryKey } from "@tanstack/react-query";
 import { apiPostJson } from "./fetcher";
 import type { Imagine } from "@/types";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 
 export function useLikeImagine() {
   const qc = useQueryClient();
@@ -52,6 +53,12 @@ export function useLikeImagine() {
           ...prevOne,
           likes: (prevOne.likes ?? 0) + 1,
         });
+      posthog.capture("imagine_like", {
+        id,
+        likes: (prevOne?.likes ?? 0) + 1,
+        xHandle: prevOne?.xHandle,
+        mediaType: prevOne?.mediaType,
+      });
       return { t, prevAll, prevOne };
     },
     onError: (_err, id, ctx) => {
@@ -62,11 +69,23 @@ export function useLikeImagine() {
       if (ctx?.prevOne) qc.setQueryData(["imagine", id], ctx.prevOne);
       if (ctx?.t) toast.dismiss(ctx.t as string);
       // no error toast
+      posthog.capture("imagine_like_error", {
+        id,
+        likes: (ctx?.prevOne?.likes ?? 0) + 1,
+        xHandle: ctx?.prevOne?.xHandle,
+        mediaType: ctx?.prevOne?.mediaType,
+      });
     },
     onSuccess: (data, _id, ctx) => {
       if (ctx?.t) toast.dismiss(ctx.t as string);
       // ensure server state
       qc.setQueryData(["imagine", data._id], data);
+      posthog.capture("imagine_like", {
+        id: data._id,
+        likes: (data.likes ?? 0) + 1,
+        xHandle: data.xHandle,
+        mediaType: data.mediaType,
+      });
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["imagines", "all"] });

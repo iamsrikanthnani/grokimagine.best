@@ -48,6 +48,7 @@ export function ImageCard({ imagine }: Props) {
                 muted
                 loop
                 playsInline
+                autoPlay
                 preload="metadata"
                 onMouseEnter={(e) => {
                   try {

@@ -42,11 +42,11 @@ export default function FeedView({ random = false }: { random?: boolean }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="py-12 w-full z-10 bg-background/90 backdrop-blur-sm text-center border-b border-border/50">
-        <h1 className="text-4xl sm:text-5xl font-bold">
+      <header className="py-12 w-full z-10 bg-background/90 backdrop-blur-sm text-center border-b border-border/50 mt-6 md:mt-0">
+        <h1 className="text-2xl md:text-4xl font-bold">
           Grok Imagine Art Contest
         </h1>
-        <p className="text-lg mt-2 text-muted-foreground">
+        <p className="text-sm md:text-lg mt-2 text-muted-foreground">
           Share your AI-generated art and vote on favorites!
         </p>
         <Link href="/upload" className="inline-block mt-4">
@@ -59,7 +59,7 @@ export default function FeedView({ random = false }: { random?: boolean }) {
       {/* Grid */}
       <main className="mt-4 p-4 lg:px-16">
         <motion.ul
-          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4"
           initial="hidden"
           animate="visible"
           variants={{
