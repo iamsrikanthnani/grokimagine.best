@@ -41,17 +41,15 @@ export default function Feed({ random }: { random?: boolean }) {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Header */}
-      <header className="top-0 w-full z-10 bg-black/90 backdrop-blur-sm py-8 text-center border-b border-gray-900/50">
+      <header className="top-0 w-full z-10 bg-background/90 backdrop-blur-sm py-8 text-center border-b border-border/50">
         <h1 className="text-4xl sm:text-5xl font-bold">
           Grok Imagine Art Contest
         </h1>
-        <p className="text-lg mt-2 text-gray-300">
+        <p className="text-lg mt-2 text-muted-foreground">
           Share your AI-generated art and vote on favorites!
         </p>
         <Link href="/upload" className="inline-block mt-4">
-          <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 shadow-md">
-            Upload
-          </Button>
+          <Button className="rounded-full px-6 py-2 shadow-md">Upload</Button>
         </Link>
       </header>
 

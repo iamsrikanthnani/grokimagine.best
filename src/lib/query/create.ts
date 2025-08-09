@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiPostForm } from "./fetcher";
 import type { Imagine } from "@/types";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 type CreatePayload = {
   xHandle: string;
@@ -13,6 +14,7 @@ type CreatePayload = {
 
 export function useCreateImagine() {
   const qc = useQueryClient();
+  const router = useRouter();
   return useMutation({
     mutationFn: async ({ xHandle, prompt, file }: CreatePayload) => {
       const form = new FormData();
@@ -22,18 +24,15 @@ export function useCreateImagine() {
       return apiPostForm<Imagine>("/api/create", form);
     },
     onMutate: async (_payload) => {
-      const t = toast.loading("Creating...");
-      // No optimistic insert into the list to avoid duplicates and ordering glitches
-      return { t };
+      // remove loading toast per requirement
+      return {};
     },
     onError: (err, _vars, ctx) => {
-      if (ctx?.t) toast.dismiss(ctx.t);
-      toast.error(err.message || "Failed to create");
+      // no toast
     },
     onSuccess: (data, _vars, ctx) => {
-      if (ctx?.t) toast.dismiss(ctx.t);
-      toast.success("Created");
       qc.setQueryData(["imagine", data._id], data);
+      router.push("/");
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["imagines", "all"] });

@@ -38,4 +38,5 @@ export type GetAllParams = {
   mediaType?: MediaType;
   since?: string;
   until?: string;
+  sort?: "likes" | "new" | "old";
 };

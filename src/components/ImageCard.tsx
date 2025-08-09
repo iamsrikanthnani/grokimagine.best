@@ -6,6 +6,7 @@ import { Heart, Twitter } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { Imagine } from "@/types";
 import { useLikeImagine } from "@/lib/query/like";
+import { useState } from "react";
 
 type Props = {
   imagine: Imagine;
@@ -13,6 +14,7 @@ type Props = {
 
 export function ImageCard({ imagine }: Props) {
   const like = useLikeImagine();
+  const [liked, setLiked] = useState(false);
   const isVideo = imagine.mediaType === "video";
 
   return (
@@ -40,6 +42,18 @@ export function ImageCard({ imagine }: Props) {
                 loop
                 playsInline
                 preload="metadata"
+                onMouseEnter={(e) => {
+                  try {
+                    (e.currentTarget as HTMLVideoElement).play();
+                  } catch {}
+                }}
+                onMouseLeave={(e) => {
+                  const v = e.currentTarget as HTMLVideoElement;
+                  try {
+                    v.pause();
+                    v.currentTime = 0;
+                  } catch {}
+                }}
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
@@ -55,7 +69,11 @@ export function ImageCard({ imagine }: Props) {
           {/* Overlay icons bottom-right with individual glass buttons */}
           <div className="absolute bottom-2 right-2 z-10 flex items-center gap-2">
             <motion.button
-              onClick={() => like.mutate(imagine._id)}
+              onClick={() => {
+                if (liked) return;
+                setLiked(true);
+                like.mutate(imagine._id);
+              }}
               className="rounded-full flex flex-row items-center gap-1 p-2 bg-black/60 backdrop-blur-md border border-gray-800/50 text-orange-400 hover:text-orange-300 shadow-md"
               aria-label="Like entry"
               whileTap={{ scale: 1.15 }}

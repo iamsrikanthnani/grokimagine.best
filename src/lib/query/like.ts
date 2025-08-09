@@ -10,7 +10,8 @@ export function useLikeImagine() {
   return useMutation({
     mutationFn: async (id: string) => apiPostJson<Imagine>("/api/like", { id }),
     onMutate: async (id: string) => {
-      const t = toast.loading("Liking...");
+      // no loading toast per requirement
+      const t = undefined as unknown as string | undefined;
       const prevAll = qc.getQueriesData({ queryKey: ["imagines", "all"] });
       const prevOne = qc.getQueryData(["imagine", id]) as Imagine | undefined;
       // optimistic updates for lists
@@ -39,12 +40,11 @@ export function useLikeImagine() {
       // revert
       ctx?.prevAll?.forEach(([key, data]) => qc.setQueryData(key, data as any));
       if (ctx?.prevOne) qc.setQueryData(["imagine", id], ctx.prevOne);
-      if (ctx?.t) toast.dismiss(ctx.t);
-      toast.error("Failed to like");
+      if (ctx?.t) toast.dismiss(ctx.t as any);
+      // no error toast
     },
     onSuccess: (data, _id, ctx) => {
-      if (ctx?.t) toast.dismiss(ctx.t);
-      toast.success("Liked");
+      if (ctx?.t) toast.dismiss(ctx.t as any);
       // ensure server state
       qc.setQueryData(["imagine", data._id], data);
     },

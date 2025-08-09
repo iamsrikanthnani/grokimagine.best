@@ -4,11 +4,13 @@ import { Card } from "@/components/ui/card";
 
 export function SkeletonCard() {
   return (
-    <Card className="bg-black/80 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-lg overflow-hidden">
-      <div className="w-full h-48 bg-gray-900 animate-pulse" />
-      <div className="p-4">
-        <div className="h-4 w-2/3 bg-gray-900 animate-pulse rounded" />
-        <div className="mt-3 h-4 w-1/3 bg-gray-900 animate-pulse rounded" />
+    <Card className="p-0 bg-card/80 backdrop-blur-md border border-border rounded-lg shadow-lg overflow-hidden">
+      <div className="relative w-full h-[36vh] md:h-[56vh]">
+        <div className="absolute inset-0 bg-muted animate-pulse" />
+        <div className="absolute bottom-2 right-2 flex gap-2">
+          <div className="rounded-full p-2 bg-background/60 backdrop-blur-md border border-border shadow-md w-8 h-8" />
+          <div className="rounded-full p-2 bg-background/60 backdrop-blur-md border border-border shadow-md w-8 h-8" />
+        </div>
       </div>
     </Card>
   );

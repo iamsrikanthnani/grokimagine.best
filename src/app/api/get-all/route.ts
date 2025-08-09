@@ -14,6 +14,8 @@ export async function GET(req: NextRequest) {
     const untilStr = searchParams.get("until");
     const since = sinceStr ? new Date(sinceStr) : undefined;
     const until = untilStr ? new Date(untilStr) : undefined;
+    const sort =
+      (searchParams.get("sort") as "likes" | "new" | "old" | null) ?? undefined;
 
     const { items, total } = await getImagines({
       limit,
@@ -23,6 +25,7 @@ export async function GET(req: NextRequest) {
       mediaType: mediaType ?? undefined,
       since,
       until,
+      sort,
     });
 
     return NextResponse.json(

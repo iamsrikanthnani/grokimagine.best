@@ -26,9 +26,10 @@ export const getImagines = async (query: {
   until?: Date; // createdAt <= until
   limit?: number;
   skip?: number;
+  sort?: "likes" | "new" | "old";
 }) => {
   await connectToDatabase();
-  const { limit = 10, skip = 0, since, until, ...rest } = query;
+  const { limit = 10, skip = 0, since, until, sort, ...rest } = query;
   const cleaned = Object.fromEntries(
     Object.entries(rest).filter(
       ([, v]) => v !== undefined && v !== null && v !== ""
@@ -41,8 +42,14 @@ export const getImagines = async (query: {
       ...(until ? { $lte: until } : {}),
     };
   }
+  const sortStage: Record<string, 1 | -1> =
+    sort === "likes"
+      ? { likes: -1 as -1, createdAt: -1 as -1 }
+      : sort === "old"
+      ? { createdAt: 1 as 1 }
+      : { createdAt: -1 as -1 };
   const [imagines, total] = await Promise.all([
-    Imagine.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
+    Imagine.find(filter).sort(sortStage).skip(skip).limit(limit),
     Imagine.countDocuments(filter),
   ]);
   return { items: imagines, total };

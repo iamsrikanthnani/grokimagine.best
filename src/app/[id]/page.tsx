@@ -18,7 +18,7 @@ export default function ImagineDetail() {
   const isVideo = data.mediaType === "video";
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
+    <div className="min-h-screen p-4">
       <Link
         href="/"
         className="fixed top-4 left-4 bg-gray-900 rounded-full p-2 shadow-md border border-gray-800/50"
@@ -36,7 +36,7 @@ export default function ImagineDetail() {
             damping: 25,
             mass: 0.5,
           }}
-          className="border lg:h-full lg:w-[24vw] h-full w-[50vw] border-gray-800/50 rounded-lg overflow-hidden bg-black/80 backdrop-blur-sm shadow-xl"
+          className="border lg:h-full lg:w-[24vw] h-full w-[50vw] border-border/50 rounded-lg overflow-hidden bg-card/80 backdrop-blur-sm shadow-xl"
         >
           {isVideo ? (
             // eslint-disable-next-line jsx-a11y/media-has-caption
@@ -69,7 +69,7 @@ export default function ImagineDetail() {
             @{data.xHandle}
           </Link>
         </div>
-        <div className="mt-4 text-base text-gray-300 bg-gray-900/50 p-4 rounded-lg border border-gray-800/50">
+        <div className="mt-4 text-base text-muted-foreground bg-muted/50 p-4 rounded-lg border border-border/50">
           {data.prompt}
         </div>
       </div>
