@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Heart } from "lucide-react";
 import { useGetImagine } from "@/lib/query/get-imagine";
 import { useLikeImagine } from "@/lib/query/like";
-import Feed from "../page";
+import FeedView from "@/components/FeedView";
 
 export default function ImagineDetail() {
   const params = useParams<{ id: string }>();
@@ -72,7 +72,7 @@ export default function ImagineDetail() {
           {data.prompt}
         </div>
       </div>
-      <Feed random />
+      <FeedView random />
     </div>
   );
 }
