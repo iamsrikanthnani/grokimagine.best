@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import posthog from "posthog-js";
+import FileUpload from "@/components/fileUpload";
 
 export default function UploadPage() {
   const create = useCreateImagine();
@@ -23,18 +24,18 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen w-full overflow-x-hidden flex items-center justify-center px-4">
       <Button
         variant="outline"
         size="icon"
         asChild
-        className="cursor-pointer absolute top-4 left-4"
+        className="cursor-pointer fixed top-4 left-4"
       >
         <Link href="/" aria-label="Go back">
           <ArrowLeft />
         </Link>
       </Button>
-      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg">
+      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg overflow-hidden">
         <div className="w-full flex flex-col items-center justify-center">
           <div className="w-20 h-20 sm:w-24 sm:h-24 bg-primary-foreground rounded-full flex items-center justify-center">
             <svg
@@ -62,7 +63,7 @@ export default function UploadPage() {
         <form onSubmit={onSubmit} className="w-full space-y-4">
           <div className="flex flex-col">
             <Input
-              className="w-full"
+              className="w-full bg-input text-sm rounded-md px-3 py-2 border border-border"
               placeholder="X Handle (truly_sn)"
               value={xHandle}
               onChange={(e) => setXHandle(e.target.value)}
@@ -79,13 +80,9 @@ export default function UploadPage() {
             onChange={(e) => setPrompt(e.target.value)}
             required
           />
-          <Input
-            type="file"
-            accept="image/*,video/*"
-            className="w-full"
-            onChange={(e) => setFile(e.target.files?.[0] || null)}
-            required
-          />
+          <div className="w-full">
+            <FileUpload onChange={(file) => setFile(file)} />
+          </div>
           <Button type="submit" className="w-full">
             {create.isPending ? "Uploading..." : "Create"}
           </Button>
