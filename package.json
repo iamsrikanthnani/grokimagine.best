@@ -1,7 +1,32 @@
 {
   "name": "grok-imagine-art-contest",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Grok Imagine Art Contest – a modern Next.js app for uploading AI art, voting with likes, and browsing a fluid infinite-scrolling feed.",
+  "license": "MIT",
+  "homepage": "https://grokimagine.best",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsrikanthnani/grokimagine.best.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iamsrikanthnani/grokimagine.best/issues"
+  },
+  "author": "Srikanth Nani",
+  "keywords": [
+    "nextjs",
+    "react",
+    "tanstack-query",
+    "mongodb",
+    "cloudflare-r2",
+    "ai-art",
+    "image-upload",
+    "infinite-scroll",
+    "shadcn",
+    "tailwind",
+    "grok",
+    "open-source"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

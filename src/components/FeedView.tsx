@@ -8,6 +8,7 @@ import ImageCard from "@/components/ImageCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import { useGetAllImagines } from "@/lib/query/get-all";
 import type { Imagine } from "@/types";
+import { UploadIcon } from "lucide-react";
 
 export default function FeedView({ random = false }: { random?: boolean }) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
@@ -41,7 +42,7 @@ export default function FeedView({ random = false }: { random?: boolean }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="top-0 w-full z-10 bg-background/90 backdrop-blur-sm py-8 text-center border-b border-border/50">
+      <header className="py-12 w-full z-10 bg-background/90 backdrop-blur-sm text-center border-b border-border/50">
         <h1 className="text-4xl sm:text-5xl font-bold">
           Grok Imagine Art Contest
         </h1>
@@ -49,7 +50,9 @@ export default function FeedView({ random = false }: { random?: boolean }) {
           Share your AI-generated art and vote on favorites!
         </p>
         <Link href="/upload" className="inline-block mt-4">
-          <Button className="rounded-full px-6 py-2 shadow-md">Upload</Button>
+          <Button className="cursor-pointer w-48 px-6 py-2 shadow-md">
+            Upload <UploadIcon className="w-4 h-4" />
+          </Button>
         </Link>
       </header>
 
