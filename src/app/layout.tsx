@@ -54,10 +54,6 @@ export const metadata: Metadata = {
       "AI art feed with uploads, voting, and a buttery-smooth infinite scroll.",
   },
   alternates: { canonical: "/" },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
