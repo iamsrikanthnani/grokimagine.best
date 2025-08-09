@@ -34,7 +34,6 @@ export function ImageCard({ imagine }: Props) {
             className="block h-full"
           >
             {isVideo ? (
-              // eslint-disable-next-line jsx-a11y/media-has-caption
               <video
                 className="absolute inset-0 w-full h-full object-cover"
                 src={imagine.mediaUrl}

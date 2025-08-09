@@ -9,7 +9,7 @@ import SkeletonCard from "@/components/SkeletonCard";
 import { useGetAllImagines } from "@/lib/query/get-all";
 import type { Imagine } from "@/types";
 
-export default function Feed({ random }: { random?: boolean }) {
+export default function Feed({ random = false }: { random?: boolean }) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useGetAllImagines({ limit: 12 });
   const loaderRef = useRef<HTMLDivElement | null>(null);

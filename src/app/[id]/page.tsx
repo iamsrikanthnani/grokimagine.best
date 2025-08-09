@@ -39,7 +39,6 @@ export default function ImagineDetail() {
           className="border lg:h-full lg:w-[24vw] h-full w-[50vw] border-border/50 rounded-lg overflow-hidden bg-card/80 backdrop-blur-sm shadow-xl"
         >
           {isVideo ? (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
             <video className="w-full rounded-lg" src={data.mediaUrl} controls />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -51,7 +50,7 @@ export default function ImagineDetail() {
           )}
         </motion.div>
 
-        <div className="lg:h-full lg:w-[24vw] h-full w-[50vw] w-full mt-4 flex items-center justify-between">
+        <div className="lg:h-full lg:w-[24vw] h-full w-full mt-4 flex items-center justify-between">
           <motion.button
             onClick={() => like.mutate(data._id)}
             className="text-orange-500 inline-flex items-center gap-2"

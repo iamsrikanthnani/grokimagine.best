@@ -21,17 +21,17 @@ export function useCreateImagine() {
       form.set("file", file);
       return apiPostForm<Imagine>("/api/create", form);
     },
-    onMutate: async (_payload) => {
+    onMutate: async () => {
       // remove loading toast per requirement
       return {};
     },
-    onError: (err, _vars, ctx) => {
+    onError: (err) => {
       // surface API message (e.g., cookie rate limit)
       const msg = err?.message || "Failed to create";
       // use a subtle toast
       import("sonner").then(({ toast }) => toast.error(msg));
     },
-    onSuccess: (data, _vars, ctx) => {
+    onSuccess: (data) => {
       qc.setQueryData(["imagine", data._id], data);
       router.push("/");
     },

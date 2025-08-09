@@ -10,10 +10,9 @@ async function parseError(res: Response): Promise<string> {
   try {
     const data = await res.json();
     if (data && typeof data === "object") {
-      if (typeof (data as any).error === "string")
-        return (data as any).error as string;
-      if (typeof (data as any).message === "string")
-        return (data as any).message as string;
+      const obj = data as Record<string, unknown>;
+      if (typeof obj.error === "string") return obj.error;
+      if (typeof obj.message === "string") return obj.message;
     }
     if (typeof data === "string" && data) return data;
   } catch {
