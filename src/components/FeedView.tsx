@@ -54,7 +54,7 @@ export default function FeedView({ random = false }: { random?: boolean }) {
       </header>
 
       {/* Grid */}
-      <main className="mt-2 p-4 lg:px-16">
+      <main className="mt-4 p-4 lg:px-16">
         <motion.ul
           className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4"
           initial="hidden"
@@ -70,7 +70,7 @@ export default function FeedView({ random = false }: { random?: boolean }) {
             </li>
           ))}
           {(status === "pending" || isFetchingNextPage) &&
-            Array.from({ length: 6 }).map((_, i) => (
+            Array.from({ length: 8 }).map((_, i) => (
               <li key={`sk-${i}`}>
                 <SkeletonCard />
               </li>
