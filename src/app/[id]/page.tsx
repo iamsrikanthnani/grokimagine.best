@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Heart, Download, Share2 } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import { useGetImagine } from "@/lib/query/get-imagine";
 import { useLikeImagine } from "@/lib/query/like";
 import Feed from "../page";

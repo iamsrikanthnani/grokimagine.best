@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, Twitter } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { Imagine } from "@/types";
 import { useLikeImagine } from "@/lib/query/like";

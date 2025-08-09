@@ -121,7 +121,10 @@ export async function POST(req: NextRequest) {
     return res;
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to create imagine" },
+      {
+        message:
+          error instanceof Error ? error.message : "Failed to create imagine",
+      },
       { status: 500 }
     );
   }
