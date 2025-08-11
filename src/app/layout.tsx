@@ -19,20 +19,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: "Grok Imagine Art Contest",
-    template: "%s · Grok Imagine Art Contest",
+    default: "Grok Imagine Best",
+    template: "%s · Grok Imagine Best",
   },
   description:
-    "AI art feed with uploads, voting, and a buttery-smooth infinite scroll. Grok Imagine Art Contest is a community-driven project that allows you to upload your AI-generated art and vote on others' creations.",
+    "Best of Grok Imagine is a community-driven project that allows you to upload your Grok generated images and videos and vote on others' creations.",
   keywords: [
     "grok",
     "imagine",
     "grok imagine",
-    "grok imagine art contest",
-    "grok imagine art",
-    "grok imagine art competition",
+    "grok imagine best",
+    "grok imagine best images",
+    "grok imagine best videos",
     "ai",
-    "grok imagine art",
+    "grok imagine images and videos",
     "nextjs",
     "cloudflare r2",
     "tanstack query",
@@ -42,16 +42,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: APP_URL,
-    title: "Grok Imagine Art Contest",
+    title: "Grok Imagine Best",
     description:
-      "AI art feed with uploads, voting, and a buttery-smooth infinite scroll. Grok Imagine Art Contest is a community-driven project that allows you to upload your AI-generated art and vote on others' creations.",
-    siteName: "Grok Imagine",
+      "Best of Grok Imagine is a community-driven project that allows you to upload your Grok generated images and videos and vote on others' creations.",
+    siteName: "Grok Imagine Best",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grok Imagine Art Contest",
+    title: "Grok Imagine Best",
     description:
-      "AI art feed with uploads, voting, and a buttery-smooth infinite scroll.",
+      "Best of Grok Imagine is a community-driven project that allows you to upload your Grok generated images and videos and vote on others' creations.",
   },
   alternates: { canonical: "/" },
   icons: {

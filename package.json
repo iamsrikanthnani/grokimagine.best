@@ -1,8 +1,8 @@
 {
-  "name": "grok-imagine-art-contest",
+  "name": "grok-imagine-best",
   "version": "0.1.0",
   "private": false,
-  "description": "Grok Imagine Art Contest – a modern Next.js app for uploading AI art, voting with likes, and browsing a fluid infinite-scrolling feed.",
+  "description": "Grok Imagine Best – a modern Next.js app for uploading the best of grok generated images and videos, voting with likes, and browsing a fluid infinite-scrolling feed.",
   "license": "MIT",
   "homepage": "https://grokimagine.best",
   "repository": {

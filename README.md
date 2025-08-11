@@ -1,6 +1,6 @@
-# Grok Imagine Art Contest
+# Grok Imagine Best
 
-AI art feed with uploads, voting, and a buttery-smooth infinite scroll — built with Next.js, Tailwind + shadcn/ui, TanStack Query, MongoDB, and Cloudflare R2.
+Best of Grok generated images/videos feed with uploads, voting, and a buttery-smooth infinite scroll — built with Next.js, Tailwind + shadcn/ui, TanStack Query, MongoDB, and Cloudflare R2.
 
 [Website](https://grokimagine.best) · [Issues](https://github.com/iamsrikanthnani/grokimagine.best/issues) · [Repo](https://github.com/iamsrikanthnani/grokimagine.best)
 

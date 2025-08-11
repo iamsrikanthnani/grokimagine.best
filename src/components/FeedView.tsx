@@ -43,11 +43,9 @@ export default function FeedView({ random = false }: { random?: boolean }) {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="py-12 w-full z-10 bg-background/90 backdrop-blur-sm text-center border-b border-border/50 mt-6 md:mt-0">
-        <h1 className="text-2xl md:text-4xl font-bold">
-          Grok Imagine Art Contest
-        </h1>
+        <h1 className="text-2xl md:text-4xl font-bold">Best of Grok Imagine</h1>
         <p className="text-sm md:text-lg mt-2 text-muted-foreground">
-          Share your AI-generated art and vote on favorites!
+          Share your Grok generated images and videos and vote on favorites!
         </p>
         <Link href="/upload" className="inline-block mt-4">
           <Button className="cursor-pointer w-48 px-6 py-2 shadow-md">
